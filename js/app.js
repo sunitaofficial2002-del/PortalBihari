@@ -3,7 +3,12 @@ const AppUtils = {
     async fetchApi(endpoint) {
         try {
             const url = `${config.API_BASE_URL}${endpoint}`;
-            const response = await fetch(url);
+            const response = await fetch(url, {
+                headers: {
+                    'ngrok-skip-browser-warning': 'true',
+                    'Content-Type': 'application/json'
+                }
+            });
             if (!response.ok) {
                 throw new Error(`API error: ${response.status} ${response.statusText}`);
             }
@@ -17,7 +22,11 @@ const AppUtils = {
     async fetchText(endpoint) {
         try {
             const url = `${config.API_BASE_URL}${endpoint}`;
-            const response = await fetch(url);
+            const response = await fetch(url, {
+                headers: {
+                    'ngrok-skip-browser-warning': 'true'
+                }
+            });
             if (!response.ok) {
                 throw new Error(`API error: ${response.status} ${response.statusText}`);
             }
